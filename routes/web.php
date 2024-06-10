@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\RecurringExpensesController;
 
 // <start> Cadastro de gastos recorrentes
 
-Route::post('/', function(){
-    dd('Hello, World!');
+Route::get('/gastos-recorrentes', function(){
+    return view('recurringExpense');
 });
 
-// <end> Cadastro de gastos reccorentes
+Route::post('/recurringExpenses', [RecurringExpensesController::class, 'store'])->name('recurringExpenses.store');
+
+// <end> Cadastro de gastos reccorentes'
