@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('recurring_expenses', function (Blueprint $table) {
-            $table->uuid();
+            $table->id();
             $table->foreignUuid('user_id');
             $table->foreignUuid('category_id')->on('categories')->nullable();
             $table->decimal('amount', total: 8, places: 2);

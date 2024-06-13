@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->uuid();
+            $table->id();
             $table->foreignUuid('user_id');
             $table->foreignUuid('category_id')->on('categories')->nullable();
             $table->enum('type', ['earning', 'expense']);

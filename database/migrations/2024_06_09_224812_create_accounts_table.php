@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->uuid();
-            $table->decimal('amount', total: 8, places: 2);
+            $table->id();
+            $table->decimal('amount', total: 8, places: 2)->default(0);
             $table->foreignUuid('user_id');
             $table->timestamps();
         });

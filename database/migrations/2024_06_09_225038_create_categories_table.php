@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->uuid();
+            $table->id();
             $table->foreignUuid('account_id');
             $table->enum('type', ['earning', 'expense']);
             $table->string('description');
