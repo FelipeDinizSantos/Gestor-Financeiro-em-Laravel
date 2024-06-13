@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->decimal('amount', total: 8, places: 2)->default(0);
-            $table->foreignUuid('user_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

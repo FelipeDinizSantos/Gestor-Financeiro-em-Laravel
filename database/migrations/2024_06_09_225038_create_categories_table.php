@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('account_id');
+            $table->foreignId('account_id');
             $table->enum('type', ['earning', 'expense']);
             $table->string('description');
             $table->timestamps();

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('recurring_expenses', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('user_id');
-            $table->foreignUuid('category_id')->on('categories')->nullable();
+            $table->foreignId('user_id');
+            $table->foreignId('category_id')->on('categories')->nullable();
             $table->decimal('amount', total: 8, places: 2);
             $table->date('start_date');
             $table->date('end_date');
