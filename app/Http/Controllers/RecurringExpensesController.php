@@ -29,7 +29,16 @@ class RecurringExpensesController extends Controller
      */
     public function store(StoreRecurringExpenseRequest $request)
     {
-        dd('Hello, world!');
+        $validated = $request->validated();
+
+        RecurringExpense::create([
+            'description' => $validated['description'],
+            'amount' => $validated['amount'],
+            'recurrence' => $validated['recurrence'],
+            'start_date' => $validated['start-date'],
+        ]);
+
+        dd(RecurringExpense::all());
     }
 
     /**
