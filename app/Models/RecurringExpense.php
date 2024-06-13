@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class RecurringExpense extends Model
 {
@@ -25,5 +27,15 @@ class RecurringExpense extends Model
             'start_date' => 'datetime',
             'end_date' => 'datetime'
         ];
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category(): HasOne
+    {
+        return $this->hasOne(Category::class);
     }
 }

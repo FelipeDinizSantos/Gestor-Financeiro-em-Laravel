@@ -32,10 +32,12 @@ class RecurringExpensesController extends Controller
         $validated = $request->validated();
 
         RecurringExpense::create([
+            'user_id' => 1,
             'description' => $validated['description'],
             'amount' => $validated['amount'],
             'recurrence' => $validated['recurrence'],
             'start_date' => $validated['start-date'],
+            'end_date' => $validated['end-date'],
         ]);
 
         dd(RecurringExpense::all());

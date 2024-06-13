@@ -22,7 +22,6 @@ class StoreRecurringExpenseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user-id' => 'required|string|min:1|max:255',
             'description' => 'required|string|min:1|max:255',
             'amount' => 'required|numeric|min:1|max:99999999.99',
             'recurrence' => 'required|in:daily,weekly,monthly,yearly',

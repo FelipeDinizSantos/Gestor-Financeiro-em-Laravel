@@ -8,9 +8,6 @@
 <body>
     <form action="{{ route('recurringExpenses.store') }}" method="post">
         @csrf
-        <label for="user-id">Seu ID:</label>
-        <input type="text" name="user-id"/>
-
         <label for="description">Nome:</label>
         <input type="text" name="description" />
 
