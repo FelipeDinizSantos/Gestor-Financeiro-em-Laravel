@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transações Recorrentes</title>
+    <title>{{ $user->name }} - Transações Recorrentes</title>
 </head>
 <body>
-    <h1>Transações recorrentes do Usuário: {{ $user->name }}</h1>
+    <h1>Transações recorrentes da Conta:</h1>
     <ul>
         @foreach ($recurringTransactions as $recurringTransaction)
             <li>{{ $recurringTransaction->description }}</li>
