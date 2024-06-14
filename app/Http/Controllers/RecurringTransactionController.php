@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RecurringExpense;
+use App\Models\RecurringTransaction;
 use App\Models\User;
 use App\Models\Category;
-use App\Http\Requests\StoreRecurringExpenseRequest;
-use App\Http\Requests\UpdateRecurringExpenseRequest;
+use App\Http\Requests\StoreRecurringTransactionRequest;
+use App\Http\Requests\UpdateRecurringTransactionRequest;
 
-class RecurringExpensesController extends Controller
+class RecurringTransactionController extends Controller
 {
     public function index()
     {
         // use Illuminate\Support\Facades\Auth;
         // $user = Auth::user();
 
-        $recurringExpenses = RecurringExpense::where('user_id', 1)->get();
+        $recurringTransactions = RecurringTransaction::where('user_id', 1)->get();
         $user = User::where('id', 1)->first(); // $user->id;
 
-        return view('recurringExpenses', [
-            'recurringExpenses' => $recurringExpenses,
+        return view('recurringTransactions', [
+            'recurringTransactions' => $recurringTransactions,
             'user' => $user,
         ]);
     }
@@ -28,16 +28,16 @@ class RecurringExpensesController extends Controller
     {
         $categories = Category::all();
 
-        return view('createRecurringExpense')->with('categories', $categories);
+        return view('createRecurringTransactions')->with('categories', $categories);
     }
 
-    public function store(StoreRecurringExpenseRequest $request)
+    public function store(StoreRecurringTransactionRequest $request)
     {
         $validated = $request->validated();
 
         // $user = Auth::user();
 
-        RecurringExpense::create([
+        RecurringTransaction::create([
             'user_id' => 1, // $user->id;
             'type' => $validated['type'],
             'category_id' => $validated['category'],
@@ -48,14 +48,14 @@ class RecurringExpensesController extends Controller
             'end_date' => $validated['end-date'],
         ]);
 
-        return redirect()->route('gastos-recorrentes.index');
+        return redirect()->route('transacoes-recorrentes.index');
     }
 
     public function destroy($id)
     {
-        $recurringExpense = RecurringExpense::findOrFail($id);
-        $recurringExpense->delete();
+        $recurringTransaction = RecurringTransaction::findOrFail($id);
+        $recurringTransaction->delete();
 
-        return redirect()->route('gastos-recorrentes.index');
+        return redirect()->route('transacoes-recorrentes.index');
     }
 }

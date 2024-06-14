@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RecurringExpensesController;
+use App\Http\Controllers\RecurringTransactionController;
 
 // <start> Cadastro de gastos recorrentes
 
-Route::get('/gastos-recorrentes/criar', [RecurringExpensesController::class, 'create'])->name('gastos-recorrentes.create');
-Route::get('/gastos-recorrentes', [RecurringExpensesController::class, 'index'])->name('gastos-recorrentes.index');
-Route::post('/recurringExpenses', [RecurringExpensesController::class, 'store'])->name('recurringExpenses.store');
-Route::delete('/recurring-expenses/{id}', [RecurringExpensesController::class, 'destroy'])->name('recurring-expenses.destroy');
+Route::get('/transacoes-recorrentes/criar', [RecurringTransactionController::class, 'create'])->name('transacoes-recorrentes.create');
+Route::get('/transacoes-recorrentes', [RecurringTransactionController::class, 'index'])->name('transacoes-recorrentes.index');
+Route::post('/recurring-transactions', [RecurringTransactionController::class, 'store'])->name('recurring-transactions.store');
+Route::delete('/recurring-transactions/{id}', [RecurringTransactionController::class, 'destroy'])->name('recurring-transactions.destroy');
 
 // <end> Cadastro de gastos reccorentes'
