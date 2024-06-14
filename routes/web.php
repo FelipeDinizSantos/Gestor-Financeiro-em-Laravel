@@ -5,12 +5,9 @@ use App\Http\Controllers\RecurringExpensesController;
 
 // <start> Cadastro de gastos recorrentes
 
-Route::get('/gastos-recorrentes/criar', function(){
-    return view('recurringExpense');
-});
-
+Route::get('/gastos-recorrentes/criar', [RecurringExpensesController::class, 'create'])->name('gastos-recorrentes.create');
+Route::get('/gastos-recorrentes', [RecurringExpensesController::class, 'index'])->name('gastos-recorrentes.index');
 Route::post('/recurringExpenses', [RecurringExpensesController::class, 'store'])->name('recurringExpenses.store');
-
-//Route::get('/gastos-recorrentes', [::class, 'index']);
+Route::delete('/recurring-expenses/{id}', [RecurringExpensesController::class, 'destroy'])->name('recurring-expenses.destroy');
 
 // <end> Cadastro de gastos reccorentes'

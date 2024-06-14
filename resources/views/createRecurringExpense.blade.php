@@ -4,17 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Gasto Recorrente</title>
+    <link rel="stylesheet" href="/css/createRecurringExpense.css">
 </head>
 <body>
-    <form action="{{ route('recurringExpenses.store') }}" method="post">
+    <form action="{{ route('recurringExpenses.store') }}" method="post" class="create-recurring-expenses">
         @csrf
         <label for="description">Nome:</label>
         <input type="text" name="description" />
 
+        <label for="type">Tipo:</label>
+        <select name="type">
+            <option value="earning">Entrada</option>
+            <option value="expense">Saída</option>
+        </select>            
+
+        <label for="category">Categorias:</label>
+        <select name="category">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->description }}</option>
+            @endforeach
+        </select>
+
         <label for="amount">Valor:</label>
         <input type="number" name="amount" min="1" max="99999999.99" />
 
-        <label for="recurrence">Recorrência</label>
+        <label for="recurrence">Recorrência:</label>
         <select name="recurrence">
             <option value="daily">Diariamente</option>
             <option value="weekly" selected>Semanalmente</option>

@@ -1,0 +1,17 @@
+*{
+    display: block;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-recurring-expenses{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: .5em;
+}

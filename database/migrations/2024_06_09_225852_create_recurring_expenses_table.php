@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('category_id')->on('categories')->nullable();
+            $table->enum('type', ['earning', 'expense']);
             $table->decimal('amount', total: 8, places: 2);
             $table->date('start_date');
             $table->date('end_date');

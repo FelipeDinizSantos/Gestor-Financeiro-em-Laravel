@@ -3,36 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\RecurringExpense;
+use App\Models\User;
+use App\Models\Category;
 use App\Http\Requests\StoreRecurringExpenseRequest;
 use App\Http\Requests\UpdateRecurringExpenseRequest;
 
 class RecurringExpensesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // use Illuminate\Support\Facades\Auth;
+        // $user = Auth::user();
+
+        $recurringExpenses = RecurringExpense::where('user_id', 1)->get();
+        $user = User::where('id', 1)->first(); // $user->id;
+
+        return view('recurringExpenses', [
+            'recurringExpenses' => $recurringExpenses,
+            'user' => $user,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('createRecurringExpense')->with('categories', $categories);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreRecurringExpenseRequest $request)
     {
         $validated = $request->validated();
 
+        // $user = Auth::user();
+
         RecurringExpense::create([
-            'user_id' => 1,
+            'user_id' => 1, // $user->id;
+            'type' => $validated['type'],
+            'category_id' => $validated['category'],
             'description' => $validated['description'],
             'amount' => $validated['amount'],
             'recurrence' => $validated['recurrence'],
@@ -40,38 +48,14 @@ class RecurringExpensesController extends Controller
             'end_date' => $validated['end-date'],
         ]);
 
-        dd(RecurringExpense::all());
+        return redirect()->route('gastos-recorrentes.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(RecurringExpense $recurringExpense)
+    public function destroy($id)
     {
-        //
-    }
+        $recurringExpense = RecurringExpense::findOrFail($id);
+        $recurringExpense->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(RecurringExpense $recurringExpense)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateRecurringExpenseRequest $request, RecurringExpense $recurringExpense)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(RecurringExpense $recurringExpense)
-    {
-        //
+        return redirect()->route('gastos-recorrentes.index');
     }
 }
