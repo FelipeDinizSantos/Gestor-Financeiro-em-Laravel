@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecurringTransactionController;
 
+Route::get('/', function () {
+    return view('login');
+});
+
 // <start> Cadastro de gastos recorrentes
 
 Route::get('/transacoes-recorrentes/criar', [RecurringTransactionController::class, 'create'])->name('transacoes-recorrentes.create');
