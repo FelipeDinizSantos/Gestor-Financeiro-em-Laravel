@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <title>Login</title>
+</head>
 <body>
     <div class="page">
-        <form method="POST" class="formLogin">
+        <form method="POST" action="{{ route('login') }}" class="formLogin">
+            @csrf
             <h1>Faça seu Login</h1>
             <p>Digite os seus dados de acesso no campo abaixo.</p>
             <label for="email">E-mail</label>
-            <input type="email" placeholder="Digite seu e-mail" autofocus="true" />
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autofocus="true" required />
             <label for="password">Senha</label>
-            <input type="password" placeholder="Digite sua senha" />
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required />
             <a href="/">Não tem uma conta?</a>
             <input type="submit" value="Acessar" class="btn" />
         </form>
     </div>
-    
 </body>
 </html>

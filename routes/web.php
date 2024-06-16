@@ -2,10 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecurringExpensesController;
+use App\Http\Controllers\LoginController;
 
-Route::get('/', function () {
-    return view('login');
-});
+// <start> Rotas de autenticação
+
+    Route::get('/', function () {
+        return view('login');
+    });
+
+// Rota para exibir a página de login
+Route::get('/login', [LoginController::class, 'formLogin'])->name('login');
+
+// Rota para processar o login
+Route::post('/login', [LoginController::class, 'login']);
+
+// <end> Rotas de autenticação
+
 
 // <start> Cadastro de gastos recorrentes
 
