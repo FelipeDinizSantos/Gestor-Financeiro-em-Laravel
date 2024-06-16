@@ -18,5 +18,9 @@
             </div>
         </article>
     </main>
+    <form action="{{ route('login.logout') }}" method="POST">
+        @csrf
+        <button type="submit">Sair</button>
+    </form>
 </body>
 </html>

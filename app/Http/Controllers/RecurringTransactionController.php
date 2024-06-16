@@ -7,38 +7,47 @@ use App\Models\User;
 use App\Models\Category;
 use App\Http\Requests\StoreRecurringTransactionRequest;
 use App\Http\Requests\UpdateRecurringTransactionRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RecurringTransactionController extends Controller
 {
     public function index()
     {
-        // use Illuminate\Support\Facades\Auth;
-        // $user = Auth::user();
+        if (!Auth::check()) {
+            return redirect()->route('login.authForm');
+        }
 
-        $recurringTransactions = RecurringTransaction::where('user_id', 1)->get();
-        $user = User::where('id', 1)->first(); // $user->id;
+        $user = Auth::user();
+
+        $recurringTransactions = RecurringTransaction::where('user_id', $user->id)->get();
 
         return view('recurringTransactions', [
             'recurringTransactions' => $recurringTransactions,
-            'user' => $user,
+            'user' => $user->name,
         ]);
     }
 
     public function create()
     {
-        $categories = Category::all();
+        if (!Auth::check()) {
+            return redirect()->route('login.authForm');
+        }
 
+        $categories = Category::all();
         return view('createRecurringTransactions')->with('categories', $categories);
     }
 
     public function store(StoreRecurringTransactionRequest $request)
     {
-        $validated = $request->validated();
+        if (!Auth::check()) {
+            return redirect()->route('login.authForm');
+        }
 
-        // $user = Auth::user();
+        $validated = $request->validated();
+        $userId = Auth::id();
 
         RecurringTransaction::create([
-            'user_id' => 1, // $user->id;
+            'user_id' => $userId, 
             'type' => $validated['type'],
             'category_id' => $validated['category'],
             'description' => $validated['description'],

@@ -8,8 +8,17 @@
     <title>Login</title>
 </head>
 <body>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="page">
-        <form method="POST" action="{{ route('login') }}" class="formLogin">
+        <form method="POST" action="{{ route('login.authUser') }}" class="formLogin">
             @csrf
             <h1>Faça seu Login</h1>
             <p>Digite os seus dados de acesso no campo abaixo.</p>
