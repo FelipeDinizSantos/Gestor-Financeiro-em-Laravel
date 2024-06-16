@@ -21,4 +21,15 @@ class AccountController extends Controller
         
         return view('dashboard', ['user' => $user, 'account' => $account]);
     }
+
+    public function update(UpdateAccountRequest $request, $id){
+        $validated = $request->validated();
+        
+        $account = Account::findOrFail($id);
+        $account->update([
+            'amount' => $validated['amount'],
+        ]);
+
+        return redirect()->back();
+    }
 }

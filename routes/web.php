@@ -11,6 +11,8 @@ Route::get('/', [AuthController::class, 'authForm'])->name('login.authForm');
 Route::post('/login', [AuthController::class, 'authUser'])->name('login.authUser');
 Route::post('/logout', [AuthController::class, 'logout'])->name('login.logout');
 
+Route::patch('/account/{id}', [AccountController::class, 'update'])->name('account.update');
+
 Route::get('/transacoes-recorrentes/criar', [RecurringTransactionController::class, 'create'])->name('transacoes-recorrentes.create');
 Route::get('/transacoes-recorrentes', [RecurringTransactionController::class, 'index'])->name('transacoes-recorrentes.index');
 Route::post('/recurring-transactions', [RecurringTransactionController::class, 'store'])->name('recurring-transactions.store');
