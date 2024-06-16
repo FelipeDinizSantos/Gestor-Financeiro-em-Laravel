@@ -23,7 +23,7 @@ class RecurringTransactionController extends Controller
 
         return view('recurringTransactions', [
             'recurringTransactions' => $recurringTransactions,
-            'user' => $user->name,
+            'user' => $user,
         ]);
     }
 
