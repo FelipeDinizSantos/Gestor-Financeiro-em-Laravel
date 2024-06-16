@@ -10,20 +10,19 @@ use App\Http\Controllers\LoginController;
         return view('login');
     });
 
-// Rota para exibir a página de login
 Route::get('/login', [LoginController::class, 'formLogin'])->name('login');
-
-// Rota para processar o login
 Route::post('/login', [LoginController::class, 'login']);
 
 // <end> Rotas de autenticação
 
+use App\Http\Controllers\RecurringTransactionController;
+use App\Http\Controllers\AccountController;
 
-// <start> Cadastro de gastos recorrentes
 
-Route::get('/gastos-recorrentes/criar', [RecurringExpensesController::class, 'create'])->name('gastos-recorrentes.create');
-Route::get('/gastos-recorrentes', [RecurringExpensesController::class, 'index'])->name('gastos-recorrentes.index');
-Route::post('/recurringExpenses', [RecurringExpensesController::class, 'store'])->name('recurringExpenses.store');
-Route::delete('/recurring-expenses/{id}', [RecurringExpensesController::class, 'destroy'])->name('recurring-expenses.destroy');
 
-// <end> Cadastro de gastos reccorentes'
+Route::get('/transacoes-recorrentes/criar', [RecurringTransactionController::class, 'create'])->name('transacoes-recorrentes.create');
+Route::get('/transacoes-recorrentes', [RecurringTransactionController::class, 'index'])->name('transacoes-recorrentes.index');
+Route::post('/recurring-transactions', [RecurringTransactionController::class, 'store'])->name('recurring-transactions.store');
+Route::delete('/recurring-transactions/{id}', [RecurringTransactionController::class, 'destroy'])->name('recurring-transactions.destroy');
+
+Route::get('/dashboard', [AccountController::class, 'index']);

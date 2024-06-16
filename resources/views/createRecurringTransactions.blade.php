@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Gasto Recorrente</title>
-    <link rel="stylesheet" href="/css/createRecurringExpense.css">
+    <title>Criar Transação Recorrente</title>
+    <link rel="stylesheet" href="{{ asset('css/createRecurringTransaction.css') }}">
 </head>
 <body>
-    <form action="{{ route('recurringExpenses.store') }}" method="post" class="create-recurring-expenses">
+    <form action="{{ route('recurring-transactions.store') }}" method="post" class="create-recurring-transaction">
         @csrf
         <label for="description">Nome:</label>
         <input type="text" name="description" />
