@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recurring_expenses', function (Blueprint $table) {
+        Schema::create('recurring_transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('category_id')->on('categories')->nullable();
+            $table->enum('type', ['earning', 'expense']);
             $table->decimal('amount', total: 8, places: 2);
             $table->date('start_date');
             $table->date('end_date');
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recurring_expenses');
+        Schema::dropIfExists('recurring_transactions');
     }
 };

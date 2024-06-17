@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Carbon\Carbon;
 
-class RecurringExpense extends Model
+class RecurringTransaction extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
         'category_id',
+        'type',
         'amount',
         'start_date',
         'end_date',
@@ -24,8 +25,8 @@ class RecurringExpense extends Model
     protected function casts(): array
     {
         return [
-            'start_date' => 'datetime',
-            'end_date' => 'datetime'
+            'start_date' => 'date',
+            'end_date' => 'date'
         ];
     }
 
@@ -34,8 +35,8 @@ class RecurringExpense extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category(): HasOne
+    public function category(): BelongsTo
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }
