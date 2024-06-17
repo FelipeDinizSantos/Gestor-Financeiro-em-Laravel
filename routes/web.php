@@ -13,7 +13,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('login.logout');
 
 Route::patch('/account/{id}', [AccountController::class, 'update'])->name('account.update');
 
-Route::get('/transacoes-recorrentes/criar', [RecurringTransactionController::class, 'create'])->name('transacoes-recorrentes.create');
 Route::get('/transacoes-recorrentes', [RecurringTransactionController::class, 'index'])->name('transacoes-recorrentes.index');
 Route::post('/recurring-transactions', [RecurringTransactionController::class, 'store'])->name('recurring-transactions.store');
 Route::delete('/recurring-transactions/{id}', [RecurringTransactionController::class, 'destroy'])->name('recurring-transactions.destroy');

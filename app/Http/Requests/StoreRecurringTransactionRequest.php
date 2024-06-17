@@ -23,12 +23,12 @@ class StoreRecurringTransactionRequest extends FormRequest
     {
         return [
             'type' => 'in:earning,expense',
-            'category' => 'required|exists:categories,id',
+            'category' => 'nullable|exists:categories,id',
             'description' => 'required|string|min:1|max:255',
             'amount' => 'required|numeric|min:1|max:99999999.99',
             'recurrence' => 'required|in:daily,weekly,monthly,yearly',
-            'start-date' => 'required|date',
-            'end-date' => 'required|date',
+            'start-date' => 'required|date_format:d/m/Y',
+            'end-date' => 'required|date_format:d/m/Y|after_or_equal:start-date',
         ];
     }
 }

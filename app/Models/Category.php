@@ -23,8 +23,8 @@ class Category extends Model
         return $this->belongsTo(Account::class);
     }
 
-    public function recurringExpense(): HasOne
+    public function recurringTransactions(): HasMany
     {
-        return $this->hasOne(RecurringExpense::class);
+        return $this->HasMany(RecurringTransaction::class);
     }
 }

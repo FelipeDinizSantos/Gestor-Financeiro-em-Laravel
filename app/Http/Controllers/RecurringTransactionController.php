@@ -18,23 +18,14 @@ class RecurringTransactionController extends Controller
         }
 
         $user = Auth::user();
-
+        $categories = Category::all();
         $recurringTransactions = RecurringTransaction::where('user_id', $user->id)->get();
 
         return view('recurringTransactions', [
             'recurringTransactions' => $recurringTransactions,
             'user' => $user,
+            'categories' => $categories,
         ]);
-    }
-
-    public function create()
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login.authForm');
-        }
-
-        $categories = Category::all();
-        return view('createRecurringTransactions')->with('categories', $categories);
     }
 
     public function store(StoreRecurringTransactionRequest $request)

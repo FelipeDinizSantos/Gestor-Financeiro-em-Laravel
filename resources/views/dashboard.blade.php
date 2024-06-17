@@ -11,7 +11,7 @@
     <span class="overlay"></span>
     <main>
         <article class="account-informations">
-            <h1 class="compliments">Olá, {{ $user->name }}</h1>
+            <h1 class="compliments">Olá, {{ $user->name }}!</h1>
             <p class="account-amount"> 
                 Conta 
                 <br/> R$ {{ $account->amount }} 

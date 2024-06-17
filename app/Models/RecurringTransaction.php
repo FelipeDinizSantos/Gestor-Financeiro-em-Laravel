@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Carbon\Carbon;
 
 class RecurringTransaction extends Model
 {
@@ -14,6 +14,7 @@ class RecurringTransaction extends Model
     protected $fillable = [
         'user_id',
         'category_id',
+        'type',
         'amount',
         'start_date',
         'end_date',
@@ -24,8 +25,8 @@ class RecurringTransaction extends Model
     protected function casts(): array
     {
         return [
-            'start_date' => 'datetime',
-            'end_date' => 'datetime'
+            'start_date' => 'date',
+            'end_date' => 'date'
         ];
     }
 
@@ -34,8 +35,28 @@ class RecurringTransaction extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category(): HasOne
+    public function category(): BelongsTo
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getStartDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function getEndDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function setStartDateAttribute($value)
+    {
+        $this->attributes['start_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+    }
+
+    public function setEndDateAttribute($value)
+    {
+        $this->attributes['end_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
     }
 }
