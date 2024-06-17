@@ -47,7 +47,7 @@ class ProcessRecurringTransactions extends Command
             $nextDate = $this->getNextDate($transaction, $today);
 
             if ($nextDate->isSameDay($today)) {
-                $user = User::find($transaction->user_id)->first();
+                $user = User::find($transaction->user_id);
 
                 if ($user) {
                     $account = Account::where('user_id', $user->id)->first();
@@ -74,7 +74,7 @@ class ProcessRecurringTransactions extends Command
 
     private function getNextDate($transaction, $today)
     {
-        $startDate = Carbon::parse($transaction->start_date);
+        $startDate = Carbon::createFromFormat('d/m/Y', $transaction->start_date); // Converte start_date para um objeto Carbon com o formato correto
         $recurrence = $transaction->recurrence;
 
         switch ($recurrence) {

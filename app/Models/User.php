@@ -43,8 +43,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function recurringExpenses(): HasMany
+    public function RecurringTransactions(): HasMany
     {
-        return $this->hasMany(RecurringExpense::class);
+        return $this->hasMany(RecurringTransaction::class);
     }
 }
