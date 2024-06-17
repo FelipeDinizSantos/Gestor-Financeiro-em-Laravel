@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class TransactionHistory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'account_id',
         'category_id',
         'type',
         'amount',
@@ -42,15 +43,5 @@ class TransactionHistory extends Model
     public function getEndDateAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y');
-    }
-
-    public function setStartDateAttribute($value)
-    {
-        $this->attributes['start_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
-    }
-
-    public function setEndDateAttribute($value)
-    {
-        $this->attributes['end_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
     }
 }

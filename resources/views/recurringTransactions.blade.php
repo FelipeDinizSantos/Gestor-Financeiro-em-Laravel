@@ -17,7 +17,9 @@
         <ul>
             @foreach ($recurringTransactions as $recurringTransaction)
                 <li>
-                    Nome: {{ $recurringTransaction->description }} 
+                    Nome: {{ $recurringTransaction->description }}
+                    <br /> 
+                    Valor: R$ {{ $recurringTransaction->amount }}
                     <br/>
                     Tipo: 
                     @if ($recurringTransaction->type == 'expense')

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\TransactionHistory;
 use App\Models\RecurringTransaction;
 use App\Models\Account;
 
@@ -60,8 +61,13 @@ class ProcessRecurringTransactions extends Command
                         }
                         $account->save();
 
-                        // Lógica para registrar a transação no histórico, se necessário
-                        // ...
+                        TransactionHistory::create([
+                            'account_id' => $account->id,
+                            'category_id' => $transaction->category_id,
+                            'type' => $transaction->type,
+                            'amount' => $transaction->amount,
+                        ]);      
+                                          
                     } else {
                         $this->error("Account not found for user ID: " . $user->id);
                     }
@@ -74,7 +80,7 @@ class ProcessRecurringTransactions extends Command
 
     private function getNextDate($transaction, $today)
     {
-        $startDate = Carbon::createFromFormat('d/m/Y', $transaction->start_date); // Converte start_date para um objeto Carbon com o formato correto
+        $startDate = Carbon::createFromFormat('d/m/Y', $transaction->start_date);
         $recurrence = $transaction->recurrence;
 
         switch ($recurrence) {

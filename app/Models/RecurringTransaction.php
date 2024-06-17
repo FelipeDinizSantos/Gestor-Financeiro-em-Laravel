@@ -45,7 +45,6 @@ class RecurringTransaction extends Model
         return Carbon::parse($value)->format('d/m/Y');
     }
 
-    // Getter para formatar end_date
     public function getEndDateAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y');
