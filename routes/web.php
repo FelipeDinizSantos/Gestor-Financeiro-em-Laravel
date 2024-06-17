@@ -11,6 +11,4 @@ Route::get('/gastos-recorrentes/criar', function(){
 
 Route::post('/recurringExpenses', [RecurringExpensesController::class, 'store'])->name('recurringExpenses.store');
 
-//Route::get('/gastos-recorrentes', [::class, 'index']);
-
 // <end> Cadastro de gastos reccorentes'
