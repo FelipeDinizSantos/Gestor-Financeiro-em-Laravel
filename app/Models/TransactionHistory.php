@@ -34,14 +34,4 @@ class TransactionHistory extends Model
     {
         return $this->belongsTo(Category::class);
     }
-
-    public function getStartDateAttribute($value)
-    {
-        return Carbon::parse($value)->format('d/m/Y');
-    }
-
-    public function getEndDateAttribute($value)
-    {
-        return Carbon::parse($value)->format('d/m/Y');
-    }
 }

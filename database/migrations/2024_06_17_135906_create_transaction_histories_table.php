@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable();
             $table->enum('type', ['earning', 'expense']);
             $table->decimal('amount', total: 8, places: 2);
-            $table->date('created_at');
+            $table->timestamps();
         });
     }
 

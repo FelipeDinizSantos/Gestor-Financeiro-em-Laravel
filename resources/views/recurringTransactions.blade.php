@@ -19,8 +19,22 @@
                 <li>
                     Nome: {{ $recurringTransaction->description }}
                     <br /> 
+
                     Valor: R$ {{ $recurringTransaction->amount }}
                     <br/>
+
+                    Recorrência: 
+                    @if ($recurringTransaction->recurrence == 'daily')
+                        Diária
+                    @elseif ($recurringTransaction->recurrence == 'weekly') 
+                        Semanalmente
+                    @elseif ($recurringTransaction->recurrence == 'monthly')
+                        Mensalmente
+                    @else
+                        Anualmente
+                    @endif
+                    <br />
+
                     Tipo: 
                     @if ($recurringTransaction->type == 'expense')
                         Saída
@@ -34,13 +48,13 @@
                         <br />
                     @endif
                    
-                    {{ $recurringTransaction->start_date }} - {{ $recurringTransaction->end_date }}
+                    {{ $startDate }} - {{ $endDate }}
                 </li>
                 <form action="{{ route('recurring-transactions.destroy', $recurringTransaction->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="delete-button">Excluir</button>
-                    </form>
+                </form>
             @endforeach
         </ul>
         <a href="#" class="create-recurrence">

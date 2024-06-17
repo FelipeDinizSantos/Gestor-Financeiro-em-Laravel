@@ -36,7 +36,7 @@ class ProcessRecurringTransactions extends Command
     public function handle()
     {
         $today = Carbon::today();
-
+        
         $transactions = RecurringTransaction::where('start_date', '<=', $today)
             ->where(function ($query) use ($today) {
                 $query->where('end_date', '>=', $today)
@@ -80,7 +80,7 @@ class ProcessRecurringTransactions extends Command
 
     private function getNextDate($transaction, $today)
     {
-        $startDate = Carbon::createFromFormat('d/m/Y', $transaction->start_date);
+        $startDate = $transaction->start_date;
         $recurrence = $transaction->recurrence;
 
         switch ($recurrence) {
