@@ -23,7 +23,7 @@
             <h1>Faça seu Login</h1>
             <p>Digite os seus dados de acesso no campo abaixo.</p>
             <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autofocus="true" required />
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail"  required />
             <label for="password">Senha</label>
             <input type="password" id="password" name="password" placeholder="Digite sua senha" required />
             <a href="/">Não tem uma conta?</a>

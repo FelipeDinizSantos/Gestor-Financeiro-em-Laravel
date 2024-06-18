@@ -48,7 +48,7 @@
                         <br />
                     @endif
                    
-                    {{ $startDate }} - {{ $endDate }}
+                    {{ $recurringTransaction->start_date }} - {{ $recurringTransaction->end_date }}
                 </li>
                 <form action="{{ route('recurring-transactions.destroy', $recurringTransaction->id) }}" method="POST">
                         @csrf

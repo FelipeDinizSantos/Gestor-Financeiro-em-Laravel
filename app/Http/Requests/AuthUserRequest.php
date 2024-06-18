@@ -23,7 +23,11 @@ class AuthUserRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|',
+            'password' => 'required|min:9|',
+        ];  [
+            'email.required' => 'O campo email é obrigatório',
+            'email.email' => 'O campo email não é válido',
+            'password.required' => 'O campo senha é obrigatório',
         ];
     }
 }
