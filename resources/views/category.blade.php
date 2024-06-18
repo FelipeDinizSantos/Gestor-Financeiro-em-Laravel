@@ -42,9 +42,26 @@
                                 <div class="category-transactions">
                                     Descrição: {{ $transaction->description }} 
                                     <br />
-                                    Tipo:
-                                    <br />
                                     Valor: {{ $transaction->amount }} <br />
+                                </div>
+                            @endif
+                        @endforeach
+                        @foreach ($recurringTransactions as $recurringTransaction)
+                            @if ($category->id == $recurringTransaction->category_id)
+                                @if($recurringTransaction->type == 'expense')
+                                    Despesa
+                                @else
+                                    Entrada
+                                @endif 
+                                -
+                                {{ $recurringTransaction->created_at }}
+                                <br />
+                                <div class="category-transactions">
+                                    Descrição: {{ $recurringTransaction->description }} 
+                                    <br />
+                                    Valor: {{ $recurringTransaction->amount }} 
+                                    <br />
+                                    Recorrente
                                 </div>
                             @endif
                         @endforeach

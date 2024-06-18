@@ -36,7 +36,7 @@ class ProcessRecurringTransactions extends Command
     public function handle()
     {
         $today = Carbon::today();
-        
+
         $transactions = RecurringTransaction::where('start_date', '<=', $today)
             ->where(function ($query) use ($today) {
                 $query->where('end_date', '>=', $today)
@@ -47,7 +47,7 @@ class ProcessRecurringTransactions extends Command
         foreach ($transactions as $transaction) {
             $nextDate = $this->getNextDate($transaction, $today);
 
-            if ($nextDate->isSameDay($today)) {
+            if ($nextDate && $nextDate->isSameDay($today)) {
                 $user = User::find($transaction->user_id);
 
                 if ($user) {
@@ -68,8 +68,8 @@ class ProcessRecurringTransactions extends Command
                             'recurrence' => true,
                             'type' => $transaction->type,
                             'amount' => $transaction->amount,
-                        ]);      
-                                          
+                        ]);
+
                     } else {
                         $this->error("Account not found for user ID: " . $user->id);
                     }
@@ -82,7 +82,7 @@ class ProcessRecurringTransactions extends Command
 
     private function getNextDate($transaction, $today)
     {
-        $startDate = $transaction->start_date;
+        $startDate = Carbon::parse($transaction->start_date); // Ensure $startDate is a Carbon instance
         $recurrence = $transaction->recurrence;
 
         switch ($recurrence) {
@@ -94,8 +94,9 @@ class ProcessRecurringTransactions extends Command
                 return $startDate->copy()->addMonths($today->diffInMonths($startDate));
             case 'yearly':
                 return $startDate->copy()->addYears($today->diffInYears($startDate));
+            default:
+                $this->error("Invalid recurrence type for transaction ID: " . $transaction->id);
+                return null;
         }
-
-        return null;
     }
 }

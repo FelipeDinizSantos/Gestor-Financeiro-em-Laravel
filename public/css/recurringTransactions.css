@@ -75,6 +75,8 @@ ul{
 
 ul li{
     display: flex;
+    border-left: 1px solid #80808091;
+    padding-left: 1em;
 }
 
 .delete-button{
@@ -166,3 +168,4 @@ ul li{
 .create-category-link{
     text-decoration: underline;
 }
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Transaction;
 use App\Models\Account;
+use App\Models\RecurringTransaction;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,13 @@ class CategoryController extends Controller
         }
 
         $categories = Category::all();
+        $recurringTransactions = RecurringTransaction::all();
         $transactions = Transaction::all();
         
         return view('category', [
             'categories' => $categories,
             'transactions' => $transactions,
+            'recurringTransactions' => $recurringTransactions,
         ]);
     }
 

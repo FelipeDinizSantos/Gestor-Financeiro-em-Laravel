@@ -80,7 +80,7 @@
                     <option value="{{ $category->id }}"> {{ $category->description }} </option>
                 @endforeach
             </select>
-            <a href="{{ route('categorias.create') }}" class="create-category-link"><small>Criar uma categoria</small></a>
+            <a href="{{ route('categorias.index') }}" class="create-category-link"><small>Criar uma categoria</small></a>
 
             <button type="submit"> Criar </button>
         </form>
