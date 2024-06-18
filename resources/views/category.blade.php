@@ -7,20 +7,33 @@
     <title>Categorias</title>
 </head>
 <body>
-    <h1>Categorias</h1>
-    <a href="{{ route('categorias.create') }}">Adicionar Categoria</a>
-    <ul>
-        @foreach ($categories as $category)
-            <li>
-                Nome: {{$category->description}} <br />
-                Tipo: 
-                @if($category->type == 'expense')
-                    Despesa
-                @else
-                    Entrada
-                @endif
-            </li>
-        @endforeach
-    </ul>
+    <main>
+        <h1 class="page-title">
+        <img src="/img/categoriesIcon">
+        Categorias
+        </h1>
+        <ul></ul>
+
+        <a href="http://127.0.0.1:8000/categorias/criar" class="create-new-categories">
+            <img src="/img/plusIcon.png" />
+            Criar Categoria
+        </a>
+
+
+        <a href="{{ route('categorias.create') }}"></a>
+        <ul>
+            @foreach ($categories as $category)
+                <li>
+                    Nome: {{$category->description}} <br />
+                    Tipo: 
+                    @if($category->type == 'expense')
+                        Despesa
+                    @else
+                        Entrada
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    </main>
 </body>
 </html>
