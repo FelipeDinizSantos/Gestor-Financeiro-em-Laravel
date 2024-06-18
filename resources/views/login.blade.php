@@ -26,7 +26,7 @@
             <input type="email" id="email" name="email" placeholder="Digite seu e-mail"  required />
             <label for="password">Senha</label>
             <input type="password" id="password" name="password" placeholder="Digite sua senha" required />
-            <a href="/">Não tem uma conta?</a>
+            <a href="{{ route('register.create') }}">Não tem uma conta?</a>
             <input type="submit" value="Acessar" class="btn" />
         </form>
     </div>
