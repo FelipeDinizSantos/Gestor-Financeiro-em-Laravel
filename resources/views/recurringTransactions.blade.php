@@ -85,6 +85,7 @@
                     <option value="{{ $category->id }}">{{ $category->description }}</option>
                 @endforeach
             </select>
+            <a href="{{ route('categorias.create') }}" class="create-category-link"><small>Criar uma categoria</small></a>
 
             <label for="amount">Valor:</label>
             <input type="number" name="amount" min="1" max="99999999.99" />

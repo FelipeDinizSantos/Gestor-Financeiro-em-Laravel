@@ -14,7 +14,8 @@ main{
     flex-direction: column;
     gap: 2em;
     padding: 1em;
-    width: 90%;
+    width: 60%;
+    border: 1.5px solid #80808091;
     height: max-content;
     margin: 0 auto;
     box-shadow: 0px 12px 19px 3px #00000017;
@@ -117,7 +118,7 @@ ul li{
     padding: .5em 1em;
     font-size: 16px;
     cursor: pointer;
-    transition: .5s ease-in-out;
+    transition: .2s ease-out;
 }
 
 .close-btn:hover{
@@ -160,4 +161,8 @@ ul li{
     display: flex;
     flex-direction: column;
     gap: .2em;
+}
+
+.create-category-link{
+    text-decoration: underline;
 }

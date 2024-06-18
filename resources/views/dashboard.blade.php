@@ -33,6 +33,13 @@
                     <p>Recorrentes</p>
                 </a>
             </div>
+
+            <div class="explore-icon">
+                <a href="{{ route('categorias.index') }}">
+                    <img src="/img/categoriesIcon.png">
+                    <p>Categorias</p>
+                </a>
+            </div>
         </article>
 
     <form action="{{ route('login.logout') }}" method="POST">
@@ -73,6 +80,7 @@
                     <option value="{{ $category->id }}"> {{ $category->description }} </option>
                 @endforeach
             </select>
+            <a href="{{ route('categorias.create') }}" class="create-category-link"><small>Criar uma categoria</small></a>
 
             <button type="submit"> Criar </button>
         </form>

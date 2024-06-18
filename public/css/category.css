@@ -14,7 +14,8 @@ main{
     flex-direction: column;
     gap: 2em;
     padding: 1em;
-    width: 90%;
+    width: 60%;
+    border: 1.5px solid #80808091;
     height: max-content;
     margin: 0 auto;
     box-shadow: 0px 12px 19px 3px #00000017;
@@ -50,7 +51,7 @@ main{
     padding: .5em;
 }
 
-a.create-new-categories{
+a.create-category{
     display: flex;
     flex-direction: column;
     gap: .5em;
@@ -60,7 +61,7 @@ a.create-new-categories{
     width: 100%;
 }
 
-a.create-new-categories img{
+a.create-category img{
     background-color: black;
     border-radius: 50%;
     width: 30px;
@@ -68,22 +69,34 @@ a.create-new-categories img{
 }
 
 ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
     padding-bottom: 1em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.24);
 }
 
 ul li{
+    position: relative;
     display: flex;
+    justify-content: center;
+    gap: 1em;
+    padding: 1em 1em 3em 1em;
+    height: max-content;
+    border: 1px solid #80808091;
+    flex-direction: column;
 }
 
 .delete-button{
-    margin-top: 1em;
+    position: absolute;
+    right: 0;
+    bottom: 0;
     background-color: white;
     border: 1px solid black;
     padding: .5em;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 1.5em;
+    margin: 0em 1em 1em 0em;
     transition: .2s all ease-in-out;
 }
 
@@ -160,4 +173,111 @@ ul li{
     display: flex;
     flex-direction: column;
     gap: .2em;
+}
+
+.back{
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    padding: .2em 1em;
+    width: 10%;
+    text-align: center;
+    font-weight: 600;
+    transition: all linear 160ms;
+    cursor: pointer;
+    margin: 0 !important;
+    transition: .2s ease-in-out;
+}
+
+.container{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    padding: 2em;
+    width: 60%;
+    gap: 1em;
+    height: 60%;
+    z-index: 1000000;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 10px 10px 40px #0000002c;
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+}
+
+.container button{
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    padding: .5em;
+    font-weight: 600;
+    transition: all linear 160ms;
+    cursor: pointer;
+    margin: 0 !important;
+    transition: .2s ease-in-out;
+    width: 50%;
+}
+
+.close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .5em 1em;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+.close-btn:hover{
+    background-color: red;
+    color: white;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 1000;
+    display: none;
+    transition: all .2s ease-in-out;
+}
+
+.delete-button{
+    background-color: white;
+    border: 1px solid black;
+    padding: .5em;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+}
+
+.delete-button:hover{
+    background-color: red;
+    color: white;
+    border: 1px solid white;
+}
+
+.category-information{
+    display: flex;
+    border: 1px solid #80808091;
+    padding: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-transactions{
+    border-left: 1px solid #80808091;
+    width: 90%;
+    padding-left: 1em;
 }

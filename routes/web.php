@@ -26,5 +26,6 @@ Route::delete('/recurring-transactions/{id}', [RecurringTransactionController::c
 Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias.index');
 Route::get('/categorias/criar', [CategoryController::class, 'create'])->name('categorias.create');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
