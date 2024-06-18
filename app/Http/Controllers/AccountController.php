@@ -32,10 +32,12 @@ class AccountController extends Controller
         $validated = $request->validated();
         
         $account = Account::findOrFail($id);
+        $newAmount = $account->amount + $validated['amount'];  
+
         $account->update([
-            'amount' => $validated['amount'],
+            'amount' => $newAmount,
         ]);
 
-        return redirect()->back();
+        return redirect()->route('account.index');
     }
 }

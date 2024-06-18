@@ -30,6 +30,7 @@ class UserController extends Controller
 
         $account = Account::create([
             'user_id' => $user->id,
+            'amount' => 0,
         ]);
 
         $categories = Category::all();

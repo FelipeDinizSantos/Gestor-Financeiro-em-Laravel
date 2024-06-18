@@ -50,6 +50,7 @@
 
     <div class="update-balance-container container">
         <h1>Atualize seu saldo:</h1>
+        <p>O valor será acrescido a conta.<br />Valor atual: R$ {{ $account->amount }}</p>
         <form action="{{ route('account.update', $account->id) }}" method="POST">
             @csrf
             @method('PATCH')
