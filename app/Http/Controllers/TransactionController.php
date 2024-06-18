@@ -8,6 +8,7 @@ use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Models\TransactionHistory;
+use App\Models\BalanceHistory;
 
 class TransactionController extends Controller
 {
@@ -37,6 +38,11 @@ class TransactionController extends Controller
         ]);
 
         $account = Account::where('user_id', $user->id)->first();
+
+        BalanceHistory::create([
+            'account_id' => $account->id,
+            'amount' => $account->amount, 
+        ]);
 
         if ($transaction->type == 'expense') {
             $account->amount -= $transaction->amount;

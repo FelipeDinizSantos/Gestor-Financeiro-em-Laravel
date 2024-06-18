@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\TransactionHistory;
 use App\Models\RecurringTransaction;
 use App\Models\Account;
+use App\Models\BalanceHistory;
 
 class ProcessRecurringTransactions extends Command
 {
@@ -54,6 +55,11 @@ class ProcessRecurringTransactions extends Command
                     $account = Account::where('user_id', $user->id)->first();
 
                     if ($account) {
+                        BalanceHistory::create([
+                            'account_id' => $account->id,
+                            'amount' => $account->amount, 
+                        ]);
+
                         if ($transaction->type == 'expense') {
                             $account->amount -= $transaction->amount;
                         } else {

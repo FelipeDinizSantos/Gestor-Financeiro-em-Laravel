@@ -20,6 +20,11 @@ class Account extends Model
         return $this->hasMany(Category::class);
     }
 
+    public function balanceHistories(): HasMany
+    {
+        return $this->hasMany(BalanceHistory::class);
+    }
+
     public function transactionHistories(): HasMany
     {
         return $this->hasMany(TransactionHistory::class);

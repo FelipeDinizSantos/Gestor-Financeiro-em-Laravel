@@ -21,18 +21,17 @@
                     <div class="category-information">
                         Categoria: {{$category->description}} 
                         |
-                        Tipo: 
                         @if($category->type == 'expense')
                             Despesa
                         @else
-                            Entrada
+                            Receita
                         @endif 
                     </div>
                     <br />
                         @foreach ($transactions as $transaction)
                             @if ($category->id == $transaction->category_id)
                                 @if($transaction->type == 'expense')
-                                    Despesa
+                                    Saida
                                 @else
                                     Entrada
                                 @endif 
