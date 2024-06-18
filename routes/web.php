@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecurringTransactionController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 
 Route::get('/cadastro', [UserController::class, 'create'])->name('register.create'); // Register Form
@@ -20,3 +21,7 @@ Route::patch('/account/{id}', [AccountController::class, 'update'])->name('accou
 Route::get('/transacoes-recorrentes', [RecurringTransactionController::class, 'index'])->name('transacoes-recorrentes.index');
 Route::post('/recurring-transactions', [RecurringTransactionController::class, 'store'])->name('recurring-transactions.store');
 Route::delete('/recurring-transactions/{id}', [RecurringTransactionController::class, 'destroy'])->name('recurring-transactions.destroy');
+
+Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias.index');
+Route::get('/categorias/criar', [CategoryController::class, 'create'])->name('categorias.create');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
