@@ -6,6 +6,7 @@ use App\Http\Controllers\RecurringTransactionController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/cadastro', [UserController::class, 'create'])->name('register.create'); // Register Form
 Route::post('/register', [UserController::class, 'store'])->name('register.store');  // Create an User Resource
@@ -25,3 +26,6 @@ Route::delete('/recurring-transactions/{id}', [RecurringTransactionController::c
 Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias.index');
 Route::get('/categorias/criar', [CategoryController::class, 'create'])->name('categorias.create');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+Route::get('/transacoes', [TransactionController::class, 'create'])->name('transacoes.create');
+Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthUserRequest extends FormRequest
+class StoreTransactionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,9 @@ class AuthUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|min:9|',
-        ];  [
-            'email.required' => 'O campo email é obrigatório',
-            'email.email' => 'O campo email não é válido',
-            'password.required' => 'O campo senha é obrigatório',
+            'category' => 'nullable|exists:categories,id',
+            'type' => 'in:expense,earning',
+            'amount' => 'required|numeric|min:1|max:99999999.99',
         ];
     }
 }
