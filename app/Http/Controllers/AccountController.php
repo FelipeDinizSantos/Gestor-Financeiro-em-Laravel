@@ -38,6 +38,6 @@ class AccountController extends Controller
             'amount' => $newAmount,
         ]);
 
-        return redirect()->route('account.index');
+        return redirect()->route('dashboard.index');
     }
 }
