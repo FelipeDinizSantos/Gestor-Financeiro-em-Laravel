@@ -15,6 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login.authForm');
+        }
+
         $categories = Category::all();
         return view('category', ['categories' => $categories]);
     }
@@ -24,6 +28,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login.authForm');
+        }
+
         return view('createCategory');
     }
 
@@ -32,6 +40,10 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login.authForm');
+        }
+
         $validated = $request->validated();
         $userId = Auth::id();
 
@@ -42,37 +54,7 @@ class CategoryController extends Controller
             'type' => $validated['type'],
             'description' => $validated['description'],
         ]);
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCategoryRequest $request, Category $category)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Category $category)
-    {
-        //
+        return redirect()->route('categorias.index');
     }
 }

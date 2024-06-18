@@ -14,6 +14,7 @@ class Transaction extends Model
         'user_id',
         'category_id',
         'type',
+        'description',
         'amount',
     ];
 
@@ -21,6 +22,7 @@ class Transaction extends Model
     {
         return [
             'created_at' => 'date',
+            'updated_at' => 'date',
         ];
     }
 

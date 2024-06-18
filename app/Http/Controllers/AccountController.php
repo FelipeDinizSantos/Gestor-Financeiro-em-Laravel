@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateAccountRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Account;
 use App\Models\User;
+use App\Models\Category;
 
 class AccountController extends Controller
 {
@@ -18,8 +19,13 @@ class AccountController extends Controller
         
         $user = Auth::user();
         $account = Account::where('user_id', $user->id)->first();
-        
-        return view('dashboard', ['user' => $user, 'account' => $account]);
+        $categories = Category::all();
+
+        return view('dashboard', [
+            'user' => $user, 
+            'account' => $account,
+            'categories' => $categories,
+        ]);
     }
 
     public function update(UpdateAccountRequest $request, $id){

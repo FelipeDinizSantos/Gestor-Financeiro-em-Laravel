@@ -23,6 +23,7 @@ class StoreTransactionRequest extends FormRequest
     {
         return [
             'category' => 'nullable|exists:categories,id',
+            'description' => 'nullable|string|min:1|max:255',
             'type' => 'in:expense,earning',
             'amount' => 'required|numeric|min:1|max:99999999.99',
         ];

@@ -15,6 +15,8 @@ class TransactionHistory extends Model
         'account_id',
         'category_id',
         'type',
+        'description',
+        'recurrence',
         'amount',
     ];
 

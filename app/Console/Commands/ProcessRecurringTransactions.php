@@ -64,6 +64,8 @@ class ProcessRecurringTransactions extends Command
                         TransactionHistory::create([
                             'account_id' => $account->id,
                             'category_id' => $transaction->category_id,
+                            'description' => $transaction->description,
+                            'recurrence' => true,
                             'type' => $transaction->type,
                             'amount' => $transaction->amount,
                         ]);      

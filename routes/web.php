@@ -27,5 +27,4 @@ Route::get('/categorias', [CategoryController::class, 'index'])->name('categoria
 Route::get('/categorias/criar', [CategoryController::class, 'create'])->name('categorias.create');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
-Route::get('/transacoes', [TransactionController::class, 'create'])->name('transacoes.create');
 Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');

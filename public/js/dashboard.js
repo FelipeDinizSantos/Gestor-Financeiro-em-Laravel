@@ -1,12 +1,25 @@
 document.querySelector('.update-account-balance').addEventListener('click', ()=>{
     const overlay = document.querySelector('.overlay');
-    const container = document.querySelector('.update-balance-container');
-
-    document.querySelector('.close-btn').addEventListener('click', ()=>{
-        container.style.display='none';
+    const updateBalanceContainer = document.querySelector('.update-balance-container');
+   
+    updateBalanceContainer.querySelector('.close-btn').addEventListener('click', ()=>{
+        updateBalanceContainer.style.display='none';
         overlay.style.display='none';
-    })
+    });
 
     overlay.style.display='flex';
-    container.style.display='flex';
+    updateBalanceContainer.style.display='flex';
+});
+
+document.querySelector('.create-transactions').addEventListener('click', ()=>{
+    const overlay = document.querySelector('.overlay');
+    const createTransactionContainer = document.querySelector('.create-transaction-container');
+
+    createTransactionContainer.querySelector('.close-btn').addEventListener('click', ()=>{
+        createTransactionContainer.style.display='none';
+        overlay.style.display='none';
+    });
+
+    overlay.style.display='flex';
+    createTransactionContainer.style.display='flex';
 });

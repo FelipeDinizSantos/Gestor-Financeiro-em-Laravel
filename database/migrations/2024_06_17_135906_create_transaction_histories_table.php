@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('account_id');
             $table->foreignId('category_id')->nullable();
+            $table->string('description')->nullable();
+            $table->boolean('recurrence')->default(false);
             $table->enum('type', ['earning', 'expense']);
             $table->decimal('amount', total: 8, places: 2);
             $table->timestamps();

@@ -46,6 +46,7 @@ main{
     position: relative;
     align-items: center;
     justify-content: center;
+    gap: 4em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.24);
     padding: 1em 0em;
 }
@@ -59,18 +60,18 @@ main{
     font-size: 16px;
 }
 
-.recurring-transactions{
+.explore-icon{
     display: flex;
     justify-content: center;
     align-items: center;
     width: min-content;
 }
 
-.recurring-transactions p{
+.explore-icon p{
     text-align: center;
 }
 
-.recurring-transactions img{
+.explore-icon img{
     background-color: black;
     border-radius: 50%;
     width: 30px;
@@ -98,7 +99,7 @@ main{
     border: none;
 }
 
-.update-balance-container{
+.container{
     display: none;
     position: absolute;
     top: 50%;
@@ -115,13 +116,13 @@ main{
     box-shadow: 10px 10px 40px #0000002c;
 }
 
-.update-balance-container form{
+.container form{
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.update-balance-container button{
+.container button{
     border: none;
     background-color: black;
     color: white;
