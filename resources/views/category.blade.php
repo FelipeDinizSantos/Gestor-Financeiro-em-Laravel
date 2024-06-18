@@ -53,7 +53,7 @@
                                     Entrada
                                 @endif 
                                 -
-                                {{ $recurringTransaction->created_at }}
+                                {{ date('d-m-Y', strtotime($recurringTransaction->created_at)) }}
                                 <br />
                                 <div class="category-transactions">
                                     Descrição: {{ $recurringTransaction->description }} 
