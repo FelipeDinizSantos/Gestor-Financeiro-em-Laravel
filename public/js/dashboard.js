@@ -23,3 +23,16 @@ document.querySelector('.create-transactions').addEventListener('click', ()=>{
     overlay.style.display='flex';
     createTransactionContainer.style.display='flex';
 });
+
+document.querySelector('.create-reminder').addEventListener('click', ()=>{
+    const overlay = document.querySelector('.overlay');
+    const createRemainderContainer = document.querySelector('.create-reminder-container');
+
+    createRemainderContainer.querySelector('.close-btn').addEventListener('click', ()=>{
+        createRemainderContainer.style.display='none';
+        overlay.style.display='none';
+    });
+
+    overlay.style.display='flex';
+    createRemainderContainer.style.display='flex';
+});

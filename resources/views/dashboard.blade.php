@@ -42,10 +42,34 @@
             </div>
         </article>
 
-    <form action="{{ route('login.logout') }}" method="POST">
-        @csrf
-        <button type="submit" class="logout-btn">Sair</button>
-    </form>
+        <article class="reminders">
+                @foreach ($reminders as $reminder)
+                <div class="reminder"> 
+                    <h2>{{ $reminder->description }}</h2>
+                    <p>R$ {{ $reminder->amount }}</p>
+                    <p>Data da Cobrança: {{ date('d-m-Y', strtotime($reminder->payday)) }}</p>
+                    <form action="{{ route('reminders.destroy', $reminder->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="delete-button">Excluir</button>
+                    </form>
+                    <form action="{{ route('reminders.destroy', $reminder->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="delete-button">Excluir</button>
+                    </form>
+                </div>
+                @endforeach
+        </article>
+
+        <button class="create-reminder">
+            <img src="/img/plusIcon.png" />
+        </button>
+
+        <form action="{{ route('login.logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="logout-btn">Sair</button>
+        </form>
     </main>
 
     <div class="update-balance-container container">
@@ -85,6 +109,23 @@
 
             <button type="submit"> Criar </button>
         </form>
+        <p class="close-btn">x</p>
+    </div>
+
+    <div class="create-reminder-container container">
+        <h1>Crie um lembrete:</h1>
+        <form method="POST" action="{{ route('reminders.store') }}">
+                @csrf
+
+                <label for="description">Descrição:</label>
+                <input name="description" type="text" />
+                <label for="amount">Valor:</label>
+                <input name="amount" type="number" />
+                <label for="payday">Data do Pagamento:</label>
+                <input name="payday" type="date" />
+
+                <button type="submit"> Criar </button>
+        <form>
         <p class="close-btn">x</p>
     </div>
 </body>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Account;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Reminder;
 
 class AccountController extends Controller
 {
@@ -20,11 +21,13 @@ class AccountController extends Controller
         $user = Auth::user();
         $account = Account::where('user_id', $user->id)->first();
         $categories = Category::all();
+        $reminders = Reminder::all(); 
 
         return view('dashboard', [
             'user' => $user, 
             'account' => $account,
             'categories' => $categories,
+            'reminders' => $reminders,
         ]);
     }
 

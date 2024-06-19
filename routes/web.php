@@ -6,6 +6,7 @@ use App\Http\Controllers\RecurringTransactionController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\TransactionController;
 
 Route::get('/cadastro', [UserController::class, 'create'])->name('register.create'); // Register Form
@@ -28,3 +29,6 @@ Route::post('/categories', [CategoryController::class, 'store'])->name('categori
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
+
+Route::post('/reminders', [ReminderController::class, 'store'])->name('reminders.store');
+Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('reminders.destroy');
