@@ -77,10 +77,10 @@ class ProcessRecurringTransactions extends Command
                         ]);
 
                     } else {
-                        $this->error("Account not found for user ID: " . $user->id);
+                        $this->error("Conta não encontrada!");
                     }
                 } else {
-                    $this->error("User not found for ID: " . $transaction->user_id);
+                    $this->error("Usuário não encontrado!");
                 }
             }
         }
@@ -88,7 +88,7 @@ class ProcessRecurringTransactions extends Command
 
     private function getNextDate($transaction, $today)
     {
-        $startDate = Carbon::parse($transaction->start_date); // Ensure $startDate is a Carbon instance
+        $startDate = Carbon::parse($transaction->start_date); 
         $recurrence = $transaction->recurrence;
 
         switch ($recurrence) {
@@ -101,7 +101,7 @@ class ProcessRecurringTransactions extends Command
             case 'yearly':
                 return $startDate->copy()->addYears($today->diffInYears($startDate));
             default:
-                $this->error("Invalid recurrence type for transaction ID: " . $transaction->id);
+                $this->error("Tipo de recorrência invalido!");
                 return null;
         }
     }
