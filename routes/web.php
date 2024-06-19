@@ -8,6 +8,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\budgetOverviewController;
+
+Route::get('/budgetOverview', [budgetOverviewController::class, 'index'])->name('budgetOverview.index');
 
 Route::get('/cadastro', [UserController::class, 'create'])->name('register.create'); // Register Form
 Route::post('/register', [UserController::class, 'store'])->name('register.store');  // Create an User Resource
@@ -32,4 +35,5 @@ Route::post('/transactions', [TransactionController::class, 'store'])->name('tra
 
 Route::post('/reminders', [ReminderController::class, 'store'])->name('reminders.store');
 Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('reminders.destroy');
+
 Route::patch('/reminders/{id}', [ReminderController::class, 'update'])->name('reminders.update');

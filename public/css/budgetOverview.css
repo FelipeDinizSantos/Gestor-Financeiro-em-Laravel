@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: black;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    position: relative;
+}
+
+header button {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    background-color: #fff;
+    color: #333;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+header button:hover {
+    background-color: #ddd;
+}
+
+.balance-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.balance, .categories {
+    width: 45%;
+}
+
+.balance h2, .categories h2 {
+    margin-top: 0;
+}
+
+.finance-overview {
+    padding: 2em;
+    background-color: #fff;
+}
+
+.finance-overview h2 {
+    margin-top: 0;
+}
+
+.finance-overview label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.finance-overview table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+.finance-overview table, th, td {
+    border: 1px solid #ddd;
+}
+
+.finance-overview th, td {
+    padding: 1em;
+    text-align: left;
+}
+
+.finance-overview th {
+    background-color: #f9f9f9;
+}
