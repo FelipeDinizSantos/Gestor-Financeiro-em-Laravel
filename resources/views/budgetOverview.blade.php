@@ -3,30 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualização das Finanças</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{$user->name}} - Visualização das Finanças</title>
+    <script src="/js/budgetOverviewController.js" defer></script>
     <link rel="stylesheet" href=" {{ asset('css/budgetOverview.css') }} ">
 </head>
 <body>
     <header>
-        <h1>Visualização das Finanças</h1>
-        <button onclick="window.history.back();">Voltar</button>
+        <h1>Visualização das Finanças de {{$user->name}}</h1>
+        <button><a href="{{ route('dashboard.index') }}">Voltar</a></button>
     </header>
     <section class="balance-section">
         <div class="balance">
-            <h2>Saldo em Conta</h2>
-            <p>R$ 5,000.00</p>
+            <h2>Saldo Atual em Conta</h2>
+            <p>R$ {{ number_format($account->amount, 2) }}</p>
         </div>
         <div class="categories">
-            <h2>Categorias</h2>
-            <label for="category">Escolha uma Categoria:</label>
-            <select id="category" name="category">
-                <option value="receitas">Receitas</option>
-                <option value="gastos">Gastos</option>
-            </select>
+            <h2>Filtros</h2>
+            <form class="category-form">
+                <label for="category">Buscar por:</label>
+                <select id="category" name="category">
+                    <option value="todas">Todas</option>
+                    <option value="receitas">Receitas</option>
+                    <option value="gastos">Gastos</option>
+                </select>
+                <button type="submit">Buscar</button>
+            </form>
         </div>
     </section>
     <section class="finance-overview">
-        <h2>Projeção das Finanças</h2>
+        <h2>Informações de Finanças:</h2>
+        <p>Saldo da conta ao Final do Mês: R$ {{number_format($projectedAmount, 2)}}</p>
         <label for="month">Mês:</label>
         <input type="month" id="month" name="month">
         <table>
@@ -38,25 +45,15 @@
                     <th>Valor</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>01/06/2024</td>
-                    <td>Salário</td>
-                    <td>Receitas</td>
-                    <td>R$ 3,000.00</td>
-                </tr>
-                <tr>
-                    <td>05/06/2024</td>
-                    <td>Aluguel</td>
-                    <td>Gastos</td>
-                    <td>R$ 1,500.00</td>
-                </tr>
-                <tr>
-                    <td>10/06/2024</td>
-                    <td>Supermercado</td>
-                    <td>Gastos</td>
-                    <td>R$ 500.00</td>
-                </tr>
+            <tbody class="finance-overview-body">
+                @foreach ($transactionHistories as $transactionHistory)
+                    <tr>
+                        <td>{{date('d-m-Y', strtotime($transactionHistory->created_at))}}</td>
+                        <td>{{ $transactionHistory->description }}</td>
+                        <td>{{ $transactionHistory->type === 'earning'?'Receitas':'Gastos'}}</td>
+                        <td>R$ {{ $transactionHistory->amount }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </section>

@@ -36,7 +36,7 @@
                                     Entrada
                                 @endif 
                                 -
-                                {{ $transaction->created_at }}
+                                {{ date('d-m-Y', strtotime($transaction->created_at)) }}
                                 <br />
                                 <div class="category-transactions">
                                     Descrição: {{ $transaction->description }} 
