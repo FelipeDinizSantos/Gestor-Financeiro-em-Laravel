@@ -27,16 +27,28 @@ class TransactionHistoryController extends Controller
         return response()->json($transactionHistory);
     }
 
-    public function filterByMonth($month){
+    public function filterByMonth($month, $type){
         if ($month) {
             $startDate = Carbon::createFromFormat('Y-m', $month)->startOfMonth();
             $endDate = Carbon::createFromFormat('Y-m', $month)->endOfMonth();
 
-            $transactionHistories = TransactionHistory::whereBetween('created_at', [$startDate, $endDate])->get();
+            $query = TransactionHistory::whereBetween('created_at', [$startDate, $endDate]);
+
+            if (strtoupper($type) === 'GASTOS') {
+                $type = 'expense';
+            }elseif (strtoupper($type) === 'RECEITAS'){
+                $type = 'earning';
+            }
+
+            if (strtoupper($type) !== 'TODAS') {
+                $query->where('type', $type);
+            }
+
+            $transactionHistories = $query->get();
 
             return response()->json($transactionHistories);
         } else {
-            return response()->json(['Selecione um mês válido!']);
+            return response()->json(['error' => 'Selecione um mês válido!'], 400);
         }
     }
 }

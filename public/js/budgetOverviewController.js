@@ -7,9 +7,9 @@ monthForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const month = monthForm.querySelector('#month').value;
+    const categoryType = categoryForm.querySelector('select').value;
 
-    console.log(month);
-    const url = `transaction-histories/filterByMonth/${encodeURIComponent(month)}`;
+    const url = `transaction-histories/filterByMonth/${encodeURIComponent(month)}/${encodeURIComponent(categoryType)}`;
     let data = []; 
 
     fetch(url, {

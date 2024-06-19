@@ -40,4 +40,4 @@ Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('
 Route::patch('/reminders/{id}', [ReminderController::class, 'update'])->name('reminders.update');
 
 Route::get('transaction-histories/{type}', [TransactionHistoryController::class, 'index'])->name('transaction-histories.index');
-Route::get('transaction-histories/filterByMonth/{month}', [TransactionHistoryController::class, 'filterByMonth'])->name('transaction-histories.filterByMonth');
+Route::get('transaction-histories/filterByMonth/{month}/{type}', [TransactionHistoryController::class, 'filterByMonth'])->name('transaction-histories.filterByMonth');
