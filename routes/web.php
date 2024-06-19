@@ -7,6 +7,9 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\budgetOverviewController;
+
+Route::get('/budgetOverview', [budgetOverviewController::class, 'index'])->name('budgetOverview.index');
 
 Route::get('/cadastro', [UserController::class, 'create'])->name('register.create'); // Register Form
 Route::post('/register', [UserController::class, 'store'])->name('register.store');  // Create an User Resource
@@ -28,3 +31,4 @@ Route::post('/categories', [CategoryController::class, 'store'])->name('categori
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
+
