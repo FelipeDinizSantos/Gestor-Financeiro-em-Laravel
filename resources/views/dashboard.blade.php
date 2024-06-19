@@ -40,6 +40,13 @@
                     <p>Categorias</p>
                 </a>
             </div>
+
+            <div class="explore-icon">
+                <a href="{{ route('budgetOverview.index') }}">
+                    <img src="/img/1.png">
+                    <p>Análise</p>
+                </a>
+            </div>
         </article>
 
         <article class="reminders">

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\Account;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Reminder;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -35,10 +36,13 @@ class UserController extends Controller
 
         $categories = Category::all();
 
+        $reminders = Reminder::all();
+
         return view('dashboard', [
             'user' => $user, 
             'account' => $account,
             'categories' => $categories,
+            'reminders' => $reminders,
         ]);
     }
 }
