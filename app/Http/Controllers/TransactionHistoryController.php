@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TransactionHistory;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TransactionHistoryController extends Controller
 {
@@ -26,51 +27,16 @@ class TransactionHistoryController extends Controller
         return response()->json($transactionHistory);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    public function filterByMonth($month){
+        if ($month) {
+            $startDate = Carbon::createFromFormat('Y-m', $month)->startOfMonth();
+            $endDate = Carbon::createFromFormat('Y-m', $month)->endOfMonth();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $transactionHistories = TransactionHistory::whereBetween('created_at', [$startDate, $endDate])->get();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TransactionHistory $transactionHistory)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TransactionHistory $transactionHistory)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TransactionHistory $transactionHistory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TransactionHistory $transactionHistory)
-    {
-        //
+            return response()->json($transactionHistories);
+        } else {
+            return response()->json(['Selecione um mês válido!']);
+        }
     }
 }

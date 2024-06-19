@@ -10,13 +10,13 @@
 </head>
 <body>
     <header>
-        <h1>Visualização das Finanças de {{$user->name}}</h1>
+        <h1>Vizualizando Finanças de {{$user->name}}</h1>
         <button><a href="{{ route('dashboard.index') }}">Voltar</a></button>
     </header>
     <section class="balance-section">
         <div class="balance">
             <h2>Saldo Atual em Conta</h2>
-            <p>R$ {{ number_format($account->amount, 2) }}</p>
+            <p>R$ {{ round($account->amount, 2) }}</p>
         </div>
         <div class="categories">
             <h2>Filtros</h2>
@@ -33,9 +33,12 @@
     </section>
     <section class="finance-overview">
         <h2>Informações de Finanças:</h2>
-        <p>Saldo da conta ao Final do Mês: R$ {{number_format($projectedAmount, 2)}}</p>
-        <label for="month">Mês:</label>
-        <input type="month" id="month" name="month">
+        <p>Saldo da conta ao Final do Mês: <strong> R$ {{round($projectedAmount, 2)}}</strong></p>
+        <form class="month-form">
+            <label for="month">Mês:</label>
+            <input type="month" id="month" name="month">
+            <button type="submit">Carregar</button>
+        </form>
         <table>
             <thead>
                 <tr>
