@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('payday');
             $table->foreignId('account_id');
             $table->decimal('amount', total: 8, places: 2);
+            $table->boolean('paid')->default(false);
             $table->timestamps();
         });
     }

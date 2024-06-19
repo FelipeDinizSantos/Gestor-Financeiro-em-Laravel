@@ -32,3 +32,4 @@ Route::post('/transactions', [TransactionController::class, 'store'])->name('tra
 
 Route::post('/reminders', [ReminderController::class, 'store'])->name('reminders.store');
 Route::delete('/reminders/{id}', [ReminderController::class, 'destroy'])->name('reminders.destroy');
+Route::patch('/reminders/{id}', [ReminderController::class, 'update'])->name('reminders.update');

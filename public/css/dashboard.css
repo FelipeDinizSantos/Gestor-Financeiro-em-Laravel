@@ -15,7 +15,7 @@ main{
     gap: 2em;
     padding: 1em;
     width: 60%;
-    height: 100vh;
+    height: max-content;
     background-color: white;
     border: 1.5px solid #80808091;
     margin: 0 auto;
@@ -87,7 +87,8 @@ main{
     background-color: white;
     color: black;
     font-size: 14px;
-    padding: .2em 1em;
+    padding: .5em 1em;
+    width: 100%;
     font-weight: 600;
     transition: all linear 160ms;
     cursor: pointer;
@@ -171,13 +172,13 @@ main{
 }
 
 .reminders{
+    position: relative;
     display: flex;
     justify-content: center;
     width: 100%;
+    padding-top: 1em;
     gap: 1em;
     flex-wrap: wrap;
-    padding-bottom: 2em;
-    border-bottom: 1px solid #80808091;
 }
 
 .reminder{
@@ -187,6 +188,11 @@ main{
     width: 30%;
     padding: .5em .5em 4em .5em;
     border: 1px solid #80808091;
+}
+
+.paid-item{
+    color: #a8a5a5;
+    text-decoration: line-through !important;
 }
 
 .delete-button{
@@ -208,6 +214,25 @@ main{
     border: 1px solid white;
 }
 
+.update-reminder-button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: .5em;
+    background-color: white;
+    border: 1px solid black;
+    padding: .5em;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+}
+
+.update-reminder-button:hover{
+    background-color: #2828fa;
+    color: white;
+    border: 1px solid white;
+}
+
 .create-reminder img{
     background-color: black;
     border-radius: 50%;
@@ -217,7 +242,28 @@ main{
 
 .create-reminder{
     display: flex;
+    flex-direction: column;
+    text-decoration: center;
+    align-items: center;
+    gap: .5em;
     justify-content: center;
     background-color: white;
     border: none;
+    cursor: pointer;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #80808091;
+}
+
+.paid{
+    margin-top: .2em;
+    text-decoration: underline !important;
+}
+
+.remindersTitle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    margin-top: -3vh;
+    font-size: 16px;
 }

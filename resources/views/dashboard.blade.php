@@ -43,27 +43,42 @@
         </article>
 
         <article class="reminders">
+            <h1 class="remindersTitle">Lembretes:</h1>
                 @foreach ($reminders as $reminder)
-                <div class="reminder"> 
-                    <h2>{{ $reminder->description }}</h2>
-                    <p>R$ {{ $reminder->amount }}</p>
-                    <p>Data da Cobrança: {{ date('d-m-Y', strtotime($reminder->payday)) }}</p>
-                    <form action="{{ route('reminders.destroy', $reminder->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete-button">Excluir</button>
-                    </form>
-                    <form action="{{ route('reminders.destroy', $reminder->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete-button">Excluir</button>
-                    </form>
-                </div>
+                    <div class="reminder"> 
+                        @if ($reminder->paid == true)
+                            <h2 class="reminderTitle"><s>{{ $reminder->description }}</s></h2>
+                            <p>Pago em: {{ date('d-m-Y', strtotime($reminder->payday)) }}</p>
+                            <h1 class="paid">PAGO</h1>
+                            <form action="{{ route('reminders.destroy', $reminder->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-button">Excluir</button>
+                            </form>
+                        @else
+                            <h2 class="reminderTitle">{{ $reminder->description }}</h2>
+                            <p>R$ {{ $reminder->amount }}</p>
+                            <p>Data de Pagamento: <span class="pay-date"> {{ date('d-m-Y', strtotime($reminder->payday)) }} </span></p>
+                            <form action="{{ route('reminders.destroy', $reminder->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-button">Excluir</button>
+                            </form>
+
+                            <form action="{{ route('reminders.update', $reminder->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="update-reminder-button">Pago</button>
+                            </form>
+                        @endif
+                        
+                    </div>
                 @endforeach
         </article>
 
         <button class="create-reminder">
             <img src="/img/plusIcon.png" />
+            Criar 
         </button>
 
         <form action="{{ route('login.logout') }}" method="POST">

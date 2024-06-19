@@ -27,6 +27,16 @@ class ReminderController extends Controller
         return redirect()->route('dashboard.index');
     }
 
+    public function update(UpdateReminderRequest $request, $id)
+    {
+        $reminder = Reminder::findOrFail($id);
+
+        $reminder->paid = true;
+        $reminder->save();
+
+        return redirect()->back();
+    }
+
     public function destroy($id)
     {
         $reminder = Reminder::findOrFail($id);
